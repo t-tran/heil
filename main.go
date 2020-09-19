@@ -1,6 +1,7 @@
 package main
 
 import (
+    "fmt"
     "flag"
     "os"
     "strconv"
@@ -12,7 +13,14 @@ func main() {
     tail_n := flag.Int("tail", 10, "number of last lines to display")
     quiet  := flag.Bool("quiet", false, "do not print anything else")
 
+    version := flag.Bool("version", false, "print version number")
+
     flag.Parse()
+
+    if *version {
+        fmt.Println("1.0.0")
+        return
+    }
 
     r := bufio.NewReader(os.Stdin)
     w := bufio.NewWriter(os.Stdout)
